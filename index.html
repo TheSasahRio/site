@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сбалансированный рацион</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- 1. Обложка и кнопки целевого действия -->
+    <header class="bg-blue-600 text-white py-16 text-center">
+        <h1 class="text-4xl font-bold mb-4">Сбалансированный рацион</h1>
+        <p class="text-lg mb-6">Создайте свой идеальный план питания с учетом КБЖУ!</p>
+        <a href="#kbjuCalculator">
+            <button id="calculateKBJU" class="bg-yellow-400 text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500">
+                Рассчитать КБЖУ
+            </button>
+        </a>
+    </header>
+
+    <!-- 2. Рассказ о продукте и описание приложения -->
+    <section class="py-12 bg-white text-center">
+        <h2 class="text-3xl font-bold mb-6">О нашем приложении</h2>
+        <p class="max-w-2xl mx-auto text-lg">
+            Наше приложение помогает составить сбалансированный рацион, учитывающий ваши потребности в калориях, белках, жирах и углеводах. Получите персонализированные рекомендации и доступ к базе полезных рецептов.
+        </p>
+    </section>
+
+    <!-- 3. Описание результата -->
+    <section class="py-12 bg-gray-100 text-center">
+        <h2 class="text-3xl font-bold mb-6">Что вы получите?</h2>
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Персонализированный рацион</h3>
+                <p>План питания, рассчитанный под ваши цели.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Рецепты</h3>
+                <p>Доступ к сотням рецептов здорового питания.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Поддержка</h3>
+                <p>Наши эксперты помогут вам на каждом этапе.</p>
+            </div>
+        </div>
+        <div id="kbjuCalculator" class="mt-8">
+            <h3 class="text-xl font-semibold mb-4">Рассчитайте ваши КБЖУ:</h3>
+            <div class="max-w-md mx-auto space-y-4">
+                <input id="currentWeight" type="number" min="1" placeholder="Текущий вес (кг)" class="w-full p-3 rounded-lg text-black">
+                <input id="goalWeight" type="number" min="1" placeholder="Желаемый вес (кг)" class="w-full p-3 rounded-lg text-black">
+                <input id="height" type="number" min="1" placeholder="Рост (см)" class="w-full p-3 rounded-lg text-black">
+                <input id="age" type="number" min="1" placeholder="Возраст (лет)" class="w-full p-3 rounded-lg text-black">
+                <select id="activityLevel" class="w-full p-3 rounded-lg text-black">
+                    <option value="">Уровень активности</option>
+                    <option value="1.2">Минимальный (сидячий образ жизни)</option>
+                    <option value="1.375">Низкий (легкие тренировки 1-3 раза/нед)</option>
+                    <option value="1.55">Средний (умеренные тренировки 3-5 раз/нед)</option>
+                    <option value="1.725">Высокий (интенсивные тренировки 6-7 раз/нед)</option>
+                    <option value="1.9">Экстремальный (спортсмены, тяжелая физ. работа)</option>
+                </select>
+                <select id="gender" class="w-full p-3 rounded-lg text-black">
+                    <option value="">Пол</option>
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+                <button id="calculateKBJUButton" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                    Рассчитать КБЖУ
+                </button>
+                <p id="kbjuMessage" class="text-red-600"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Примитивные диеты для похудения -->
+    <section class="py-12 bg-white text-center">
+        <h2 class="text-3xl font-bold mb-6">Диеты для похудения</h2>
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Низкокалорийная диета</h3>
+                <p class="mt-2 text-sm">
+                    <strong>Рецепт:</strong><br>
+                    <em>Завтрак:</em> Овсянка на воде (50 г овсянки, 100 г ягод, 200 мл воды).<br>
+                    <em>Обед:</em> Салат из огурцов, помидоров, куриной грудки (150 г), заправка из 1 ч.л. оливкового масла.<br>
+                    <em>Ужин:</em> Паровые овощи (200 г) и 100 г отварной рыбы.<br>
+                    <em>Инструкции:</em> Сварите овсянку, добавьте ягоды. Для салата нарежьте овощи, смешайте с курицей. Овощи и рыбу готовьте на пару.
+                </p>
+                <button class="diet-btn mt-4 text-blue-600 hover:underline" data-diet='{"name":"Низкокалорийная диета","calories":1200,"protein":80,"fat":40,"carbs":120}'>Подробнее</button>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Кето-диета</h3>
+                <p class="mt-2 text-sm">
+                    <strong>Рецепт:</strong><br>
+                    <em>Завтрак:</em> Омлет из 2 яиц с авокадо (100 г) и сыром (30 г).<br>
+                    <em>Обед:</em> Жирный лосось (150 г) с брокколи (100 г), заправленный сливочным соусом.<br>
+                    <em>Ужин:</em> Салат из шпината (50 г), орехов (20 г) и оливкового масла.<br>
+                    <em>Инструкции:</em> Взбейте яйца, пожарьте омлет, добавьте авокадо и сыр. Лосось запеките, брокколи отварите. Салат смешайте с маслом.
+                </p>
+                <button class="diet-btn mt-4 text-blue-600 hover:underline" data-diet='{"name":"Кето-диета","calories":1500,"protein":70,"fat":120,"carbs":20}'>Подробнее</button>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Белковая диета</h3>
+                <p class="mt-2 text-sm">
+                    <strong>Рецепт:</strong><br>
+                    <em>Завтрак:</em> Творог 5% (150 г) с горстью ягод.<br>
+                    <em>Обед:</em> Куриная грудка (150 г) с греческим йогуртом (50 г) и огурцом.<br>
+                    <em>Ужин:</em> Яйца вареные (2 шт.) и паровая брокколи (150 г).<br>
+                    <em>Инструкции:</em> Смешайте творог с ягодами. Грудку запеките, подайте с йогуртом и огурцом. Яйца сварите, брокколи готовьте на пару.
+                </p>
+                <button class="diet-btn mt-4 text-blue-600 hover:underline" data-diet='{"name":"Белковая диета","calories":1300,"protein":100,"fat":50,"carbs":80}'>Подробнее</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Калькулятор порций -->
+    <section id="portionCalculator" class="py-12 bg-gray-100 text-center">
+        <h2 class="text-3xl font-bold mb-6">Калькулятор порций</h2>
+        <div class="max-w-md mx-auto space-y-4">
+            <input id="targetCalories" type="number" min="1" placeholder="Введите желаемые калории (ккал)" class="w-full p-3 rounded-lg text-black">
+            <select id="dishSelect" class="w-full p-3 rounded-lg text-black">
+                <option value="">Выберите блюдо или диету</option>
+                <option value='{"name":"Овсянка с ягодами","calories":250,"protein":8,"fat":5,"carbs":40}'>Овсянка с ягодами (250 ккал)</option>
+                <option value='{"name":"Салат с курицей","calories":350,"protein":25,"fat":10,"carbs":20}'>Салат с курицей (350 ккал)</option>
+                <option value='{"name":"Лосось с овощами","calories":400,"protein":30,"fat":15,"carbs":25}'>Лосось с овощами (400 ккал)</option>
+                <option value='{"name":"Гречка с индейкой","calories":300,"protein":20,"fat":8,"carbs":35}'>Гречка с индейкой (300 ккал)</option>
+                <option value='{"name":"Творожная запеканка","calories":200,"protein":15,"fat":5,"carbs":20}'>Творожная запеканка (200 ккал)</option>
+                <option value='{"name":"Низкокалорийная диета","calories":1200,"protein":80,"fat":40,"carbs":120}'>Низкокалорийная диета (1200 ккал)</option>
+                <option value='{"name":"Кето-диета","calories":1500,"protein":70,"fat":120,"carbs":20}'>Кето-диета (1500 ккал)</option>
+                <option value='{"name":"Белковая диета","calories":1300,"protein":100,"fat":50,"carbs":80}'>Белковая диета (1300 ккал)</option>
+            </select>
+            <button id="calculatePortions" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                Рассчитать порции
+            </button>
+            <p id="portionMessage" class="text-red-600"></p>
+        </div>
+    </section>
+
+    <!-- 6. Призыв к действию и форма обратной связи -->
+    <section id="registerForm" class="py-12 bg-blue-600 text-white text-center">
+        <h2 class="text-3xl font-bold mb-6">Начните прямо сейчас!</h2>
+        <form id="contactForm" class="max-w-md mx-auto space-y-4">
+            <input id="name" type="text" placeholder="Ваше имя" class="w-full p-3 rounded-lg text-black">
+            <input id="email" type="email" placeholder="Ваш email" class="w-full p-3 rounded-lg text-black">
+            <label class="flex items-center space-x-2">
+                <input id="consent" type="checkbox" class="h-5 w-5">
+                <span>Я согласен с обработкой персональных данных</span>
+            </label>
+            <button type="submit" id="registerButton" class="bg-yellow-400 text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500">
+                Зарегистрироваться
+            </button>
+            <p id="formMessage" class="text-red-200"></p>
+        </form>
+    </section>
+
+    <!-- 7. Уникальное предложение -->
+    <section class="py-12 bg-white text-center">
+        <h2 class="text-3xl font-bold mb-6">Специальное предложение</h2>
+        <p class="max-w-2xl mx-auto text-lg">
+            Зарегистрируйтесь сегодня и получите бесплатный доступ к нашей базе рецептов на 7 дней!
+        </p>
+        <a href="#registerForm">
+            <button class="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                Получить бонус
+            </button>
+        </a>
+    </section>
+
+    <!-- 8. Социальные доказательства -->
+    <section class="py-12 bg-gray-100 text-center">
+        <h2 class="text-3xl font-bold mb-6">Отзывы наших пользователей</h2>
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="italic">"Этот сайт помог мне сбросить 5 кг!"</p>
+                <p class="mt-2 font-semibold">Анна, 28 лет</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="italic">"Рецепты простые и вкусные!"</p>
+                <p class="mt-2 font-semibold">Михаил, 34 года</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="italic">"КБЖУ расчет очень точный!"</p>
+                <p class="mt-2 font-semibold">Елена, 45 лет</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Сопутствующая информация -->
+    <footer class="py-12 bg-blue-800 text-white text-center">
+        <h2 class="text-3xl font-bold mb-6">Контакты</h2>
+        <p>Email: info@balanced-diet.ru</p>
+        <p>Телефон: +7 (999) 123-45-67</p>
+        <div class="mt-6">
+            <h3 class="text-xl font-semibold mb-2">Полезные рецепты</h3>
+            <ul id="recipeList" class="space-y-2">
+                <li>
+                    <button class="recipe-btn text-yellow-400 hover:underline" data-recipe='{"name":"Овсянка с ягодами","calories":250,"protein":8,"fat":5,"carbs":40,"recipe":"Ингредиенты: 50 г овсянки, 100 г ягод, 200 мл воды.<br>Инструкции: Сварите овсянку на воде, добавьте ягоды."}'>
+                        Овсянка с ягодами
+                    </button>
+                </li>
+                <li>
+                    <button class="recipe-btn text-yellow-400 hover:underline" data-recipe='{"name":"Салат с курицей","calories":350,"protein":25,"fat":10,"carbs":20,"recipe":"Ингредиенты: 150 г куриной грудки, 100 г огурцов, 100 г помидоров, 1 ч.л. оливкового масла.<br>Инструкции: Запеките грудку, нарежьте овощи, смешайте с маслом."}'>
+                        Салат с курицей
+                    </button>
+                </li>
+                <li>
+                    <button class="recipe-btn text-yellow-400 hover:underline" data-recipe='{"name":"Лосось с овощами","calories":400,"protein":30,"fat":15,"carbs":25,"recipe":"Ингредиенты: 150 г лосося, 150 г брокколи, 1 ст.л. оливкового масла.<br>Инструкции: Запеките лосось, отварите брокколи, сбрызните маслом."}'>
+                        Лосось с овощами
+                    </button>
+                </li>
+                <li>
+                    <button class="recipe-btn text-yellow-400 hover:underline" data-recipe='{"name":"Гречка с индейкой","calories":300,"protein":20,"fat":8,"carbs":35,"recipe":"Ингредиенты: 50 г гречки, 100 г филе индейки, 100 г кабачка, 1 ч.л. оливкового масла.<br>Инструкции: Сварите гречку, запеките индейку с кабачком, сбрызните маслом."}'>
+                        Гречка с индейкой
+                    </button>
+                </li>
+                <li>
+                    <button class="recipe-btn text-yellow-400 hover:underline" data-recipe='{"name":"Творожная запеканка","calories":200,"protein":15,"fat":5,"carbs":20,"recipe":"Ингредиенты: 150 г творога 5%, 1 яйцо, 20 г мёда, 30 г овсяной муки.<br>Инструкции: Смешайте ингредиенты, запеките при 180°C 20 минут."}'>
+                        Творожная запеканка
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Новый калькулятор КБЖУ
+        document.getElementById('calculateKBJUButton').addEventListener('click', () => {
+            console.log('Кнопка Рассчитать КБЖУ нажата'); // Отладка
+            const currentWeight = parseFloat(document.getElementById('currentWeight').value);
+            const goalWeight = parseFloat(document.getElementById('goalWeight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseFloat(document.getElementById('age').value);
+            const activityLevel = parseFloat(document.getElementById('activityLevel').value);
+            const gender = document.getElementById('gender').value;
+            const kbjuMessage = document.getElementById('kbjuMessage');
+
+            console.log('Ввод:', { currentWeight, goalWeight, height, age, activityLevel, gender }); // Отладка
+            kbjuMessage.textContent = '';
+            kbjuMessage.classList.remove('text-green-600', 'text-red-600');
+
+            // Проверка ввода
+            if (!currentWeight || isNaN(currentWeight) || currentWeight <= 0 ||
+                !goalWeight || isNaN(goalWeight) || goalWeight <= 0 ||
+                !height || isNaN(height) || height <= 0 ||
+                !age || isNaN(age) || age <= 0 ||
+                !activityLevel || !gender) {
+                kbjuMessage.textContent = 'Пожалуйста, заполните все поля корректно.';
+                kbjuMessage.classList.add('text-red-600');
+                console.log('Ошибка: некорректный ввод'); // Отладка
+                return;
+            }
+
+            try {
+                // Расчет BMR (формула Миффлина-Сан Жеора)
+                let bmr;
+                if (gender === 'male') {
+                    bmr = 10 * currentWeight + 6.25 * height - 5 * age + 5;
+                } else {
+                    bmr = 10 * currentWeight + 6.25 * height - 5 * age - 161;
+                }
+
+                // Поддерживающие калории
+                let maintenanceCalories = bmr * activityLevel;
+
+                // Адаптация калорий под цель
+                let targetCalories;
+                if (goalWeight < currentWeight) {
+                    // Дефицит 15% для похудения
+                    targetCalories = maintenanceCalories * 0.85;
+                } else if (goalWeight > currentWeight) {
+                    // Профицит 15% для набора
+                    targetCalories = maintenanceCalories * 1.15;
+                } else {
+                    // Поддержание веса
+                    targetCalories = maintenanceCalories;
+                }
+
+                // Расчет макронутриентов (на основе желаемого веса)
+                const protein = Math.round(goalWeight * 2.0); // 2.0 г/кг
+                const fat = Math.round(goalWeight * 0.9); // 0.9 г/кг
+                const carbs = Math.round((targetCalories - (protein * 4 + fat * 9)) / 4); // Остаток на углеводы
+
+                // Отображение результата
+                kbjuMessage.textContent = `Калории: ${Math.round(targetCalories)} ккал. Белки: ${protein} г. Жиры: ${fat} г. Углеводы: ${carbs} г.`;
+                kbjuMessage.classList.add('text-green-600');
+                console.log('Результат КБЖУ:', { targetCalories, protein, fat, carbs }); // Отладка
+
+                // Заполнение калькулятора порций
+                document.getElementById('targetCalories').value = Math.round(targetCalories);
+            } catch (error) {
+                kbjuMessage.textContent = 'Ошибка при расчете КБЖУ. Попробуйте снова.';
+                kbjuMessage.classList.add('text-red-600');
+                console.error('Ошибка расчета:', error); // Отладка
+            }
+        });
+
+        // Обработка формы регистрации
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log('Форма отправлена'); // Отладка
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const consent = document.getElementById('consent').checked;
+            const formMessage = document.getElementById('formMessage');
+
+            console.log('Имя:', name, 'Email:', email, 'Согласие:', consent); // Отладка
+            formMessage.textContent = '';
+            formMessage.classList.remove('text-green-200', 'text-red-200');
+
+            if (!name || !email) {
+                formMessage.textContent = 'Введите данные';
+                formMessage.classList.add('text-red-200');
+                console.log('Ошибка: пустые поля'); // Отладка
+                return;
+            }
+            if (!consent) {
+                formMessage.textContent = 'Пожалуйста, дайте согласие на обработку данных';
+                formMessage.classList.add('text-red-200');
+                console.log('Ошибка: нет согласия'); // Отладка
+                return;
+            }
+
+            formMessage.textContent = 'Успешно зарегистрировано';
+            formMessage.classList.add('text-green-200');
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('consent').checked = false;
+            console.log('Успешная регистрация'); // Отладка
+        });
+
+        // Обработка рецептов
+        document.querySelectorAll('.recipe-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                console.log('Рецепт нажат:', button.getAttribute('data-recipe')); // Отладка
+                const recipe = JSON.parse(button.getAttribute('data-recipe'));
+                alert(`Рецепт: ${recipe.name}\nКалории: ${recipe.calories} ккал\nБелки: ${recipe.protein} г\nЖиры: ${recipe.fat} г\nУглеводы: ${recipe.carbs} г\n\n${recipe.recipe}`);
+            });
+        });
+
+        // Обработка диет
+        document.querySelectorAll('.diet-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                console.log('Диета нажата:', button.getAttribute('data-diet')); // Отладка
+                const diet = JSON.parse(button.getAttribute('data-diet'));
+                alert(`Диета: ${diet.name}\nКалории: ${diet.calories} ккал\nБелки: ${diet.protein} г\nЖиры: ${diet.fat} г\nУглеводы: ${diet.carbs} г`);
+            });
+        });
+
+        // Калькулятор порций
+        document.getElementById('calculatePortions').addEventListener('click', () => {
+            console.log('Кнопка Рассчитать порции нажата'); // Отладка
+            const targetCalories = parseInt(document.getElementById('targetCalories').value);
+            const dishSelect = document.getElementById('dishSelect').value;
+            const portionMessage = document.getElementById('portionMessage');
+
+            console.log('Калории:', targetCalories, 'Выбор блюда:', dishSelect); // Отладка
+            portionMessage.textContent = '';
+            portionMessage.classList.remove('text-green-600', 'text-red-600');
+
+            if (!targetCalories || isNaN(targetCalories) || targetCalories <= 0) {
+                portionMessage.textContent = 'Пожалуйста, введите корректное количество калорий (больше 0).';
+                portionMessage.classList.add('text-red-600');
+                console.log('Ошибка: некорректные калории'); // Отладка
+                return;
+            }
+            if (!dishSelect) {
+                portionMessage.textContent = 'Пожалуйста, выберите блюдо или диету.';
+                portionMessage.classList.add('text-red-600');
+                console.log('Ошибка: блюдо не выбрано'); // Отладка
+                return;
+            }
+
+            try {
+                const dish = JSON.parse(dishSelect);
+                console.log('Блюдо распарсено:', dish); // Отладка
+                const portions = Math.round(targetCalories / dish.calories * 10) / 10; // Округляем до 1 знака
+                const adjustedProtein = Math.round(dish.protein * portions);
+                const adjustedFat = Math.round(dish.fat * portions);
+                const adjustedCarbs = Math.round(dish.carbs * portions);
+
+                portionMessage.textContent = `Для ${targetCalories} ккал вам нужно ${portions} порции "${dish.name}". КБЖУ: ${Math.round(dish.calories * portions)} ккал, ${adjustedProtein} г белков, ${adjustedFat} г жиров, ${adjustedCarbs} г углеводов.`;
+                portionMessage.classList.add('text-green-600');
+                console.log('Результат отображен'); // Отладка
+            } catch (error) {
+                portionMessage.textContent = 'Ошибка при расчете порций. Попробуйте снова.';
+                portionMessage.classList.add('text-red-600');
+                console.error('Ошибка парсинга блюда:', error); // Отладка
+            }
+        });
+    </script>
+</body>
+</html>
