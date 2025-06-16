@@ -7,8 +7,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- 1. Обложка и кнопки целевого действия -->
-    <header class="bg-blue-600 text-white py-16 text-center">
+    <!-- Навигация -->
+    <nav class="bg-blue-600 text-white py-4 fixed w-full top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">Сбалансированный рацион</h1>
+            <div class="hidden md:flex space-x-4">
+                <a href="#about" class="hover:underline">О приложении</a>
+                <a href="#benefits" class="hover:underline">Что вы получите</a>
+                <a href="#diets" class="hover:underline">Диеты</a>
+                <a href="#portionCalculator" class="hover:underline">Калькулятор порций</a>
+                <a href="#registerForm" class="hover:underline">Регистрация</a>
+                <a href="#reviews" class="hover:underline">Отзывы</a>
+                <a href="#contacts" class="hover:underline">Контакты</a>
+            </div>
+            <button id="menuToggle" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-blue-600">
+            <a href="#about" class="block py-2 px-4 hover:bg-blue-700">О приложении</a>
+            <a href="#benefits" class="block py-2 px-4 hover:bg-blue-700">Что вы получите</a>
+            <a href="#diets" class="block py-2 px-4 hover:bg-blue-700">Диеты</a>
+            <a href="#portionCalculator" class="block py-2 px-4 hover:bg-blue-700">Калькулятор порций</a>
+            <a href="#registerForm" class="block py-2 px-4 hover:bg-blue-700">Регистрация</a>
+            <a href="#reviews" class="block py-2 px-4 hover:bg-blue-700">Отзывы</a>
+            <a href="#contacts" class="block py-2 px-4 hover:bg-blue-700">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- 1. Обложка -->
+    <header class="bg-blue-600 text-white py-16 text-center mt-16">
         <h1 class="text-4xl font-bold mb-4">Сбалансированный рацион</h1>
         <p class="text-lg mb-6">Создайте свой идеальный план питания с учетом КБЖУ!</p>
         <a href="#kbjuCalculator">
@@ -18,8 +48,8 @@
         </a>
     </header>
 
-    <!-- 2. Рассказ о продукте и описание приложения -->
-    <section class="py-12 bg-white text-center">
+    <!-- 2. Рассказ о продукте -->
+    <section id="about" class="py-12 bg-white text-center">
         <h2 class="text-3xl font-bold mb-6">О нашем приложении</h2>
         <p class="max-w-2xl mx-auto text-lg">
             Наше приложение помогает составить сбалансированный рацион, учитывающий ваши потребности в калориях, белках, жирах и углеводах. Получите персонализированные рекомендации и доступ к базе полезных рецептов.
@@ -27,7 +57,7 @@
     </section>
 
     <!-- 3. Описание результата -->
-    <section class="py-12 bg-gray-100 text-center">
+    <section id="benefits" class="py-12 bg-gray-100 text-center">
         <h2 class="text-3xl font-bold mb-6">Что вы получите?</h2>
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white p-6 rounded-lg shadow-md">
@@ -71,8 +101,8 @@
         </div>
     </section>
 
-    <!-- 4. Примитивные диеты для похудения -->
-    <section class="py-12 bg-white text-center">
+    <!-- 4. Диеты для похудения -->
+    <section id="diets" class="py-12 bg-white text-center">
         <h2 class="text-3xl font-bold mb-6">Диеты для похудения</h2>
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-gray-50 p-6 rounded-lg shadow-md">
@@ -142,7 +172,7 @@
             <input id="email" type="email" placeholder="Ваш email" class="w-full p-3 rounded-lg text-black">
             <label class="flex items-center space-x-2">
                 <input id="consent" type="checkbox" class="h-5 w-5">
-                <span>Я согласен с обработкой персональных данных</span>
+                <span>Я согласен с <a href="#privacy" class="underline hover:text-yellow-400">политикой конфиденциальности</a></span>
             </label>
             <button type="submit" id="registerButton" class="bg-yellow-400 text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500">
                 Зарегистрироваться
@@ -165,29 +195,65 @@
     </section>
 
     <!-- 8. Социальные доказательства -->
-    <section class="py-12 bg-gray-100 text-center">
+    <section id="reviews" class="py-12 bg-gray-100 text-center">
         <h2 class="text-3xl font-bold mb-6">Отзывы наших пользователей</h2>
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <p class="italic">"Этот сайт помог мне сбросить 5 кг!"</p>
                 <p class="mt-2 font-semibold">Анна, 28 лет</p>
+                <p class="text-sm text-gray-500">Июнь 2025</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <p class="italic">"Рецепты простые и вкусные!"</p>
                 <p class="mt-2 font-semibold">Михаил, 34 года</p>
+                <p class="text-sm text-gray-500">Май 2025</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <p class="italic">"КБЖУ расчет очень точный!"</p>
                 <p class="mt-2 font-semibold">Елена, 45 лет</p>
+                <p class="text-sm text-gray-500">Апрель 2025</p>
             </div>
         </div>
     </section>
 
-    <!-- 9. Сопутствующая информация -->
-    <footer class="py-12 bg-blue-800 text-white text-center">
+    <!-- 9. Политика конфиденциальности -->
+    <section id="privacy" class="py-12 bg-white text-center">
+        <h2 class="text-3xl font-bold mb-6">Политика конфиденциальности</h2>
+        <div class="max-w-2xl mx-auto text-left text-lg">
+            <p class="mb-4">
+                Мы уважаем вашу конфиденциальность и обязуемся защищать ваши персональные данные. Настоящая политика конфиденциальности описывает, как мы собираем, используем и защищаем информацию, которую вы предоставляете при использовании нашего сайта.
+            </p>
+            <h3 class="text-xl font-semibold mb-2">1. Сбор информации</h3>
+            <p class="mb-4">
+                Мы собираем только те данные, которые вы добровольно предоставляете через формы на сайте, такие как имя и адрес электронной почты. Эти данные используются для предоставления вам услуг, связанных с созданием персонализированного рациона.
+            </p>
+            <h3 class="text-xl font-semibold mb-2">2. Использование информации</h3>
+            <p class="mb-4">
+                Собранные данные используются для связи с вами, предоставления рекомендаций по питанию и улучшения работы сайта. Мы не передаем ваши данные третьим лицам, за исключением случаев, предусмотренных законом.
+            </p>
+            <h3 class="text-xl font-semibold mb-2">3. Защита данных</h3>
+            <p class="mb-4">
+                Мы применяем технические и организационные меры для защиты ваших данных от несанкционированного доступа, утраты или раскрытия.
+            </p>
+            <h3 class="text-xl font-semibold mb-2">4. Ваши права</h3>
+            <p class="mb-4">
+                Вы имеете право запросить доступ к своим данным, их исправление или удаление. Для этого свяжитесь с нами по электронной почте: <a href="mailto:info@balanced-diet.ru" class="underline hover:text-blue-600">info@balanced-diet.ru</a>.
+            </p>
+            <h3 class="text-xl font-semibold mb-2">5. Изменения политики</h3>
+            <p class="mb-4">
+                Мы можем обновлять данную политику. Все изменения будут опубликованы на этой странице.
+            </p>
+            <p class="mb-4">
+                Если у вас есть вопросы, свяжитесь с нами по адресу: <a href="mailto:info@balanced-diet.ru" class="underline hover:text-blue-600">info@balanced-diet.ru</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- 10. Сопутствующая информация -->
+    <footer id="contacts" class="py-12 bg-blue-800 text-white text-center">
         <h2 class="text-3xl font-bold mb-6">Контакты</h2>
-        <p>Email: info@balanced-diet.ru</p>
-        <p>Телефон: +7 (999) 123-45-67</p>
+        <p>Email: <a href="mailto:info@balanced-diet.ru" class="underline hover:text-yellow-400">info@balanced-diet.ru</a></p>
+        <p class="mt-4"><a href="#privacy" class="underline hover:text-yellow-400">Политика конфиденциальности</a></p>
         <div class="mt-6">
             <h3 class="text-xl font-semibold mb-2">Полезные рецепты</h3>
             <ul id="recipeList" class="space-y-2">
@@ -221,7 +287,14 @@
     </footer>
 
     <script>
-        // Новый калькулятор КБЖУ
+        // Навигация: гамбургер-меню
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+            console.log('Меню переключено'); // Отладка
+        });
+
+        // Калькулятор КБЖУ
         document.getElementById('calculateKBJUButton').addEventListener('click', () => {
             console.log('Кнопка Рассчитать КБЖУ нажата'); // Отладка
             const currentWeight = parseFloat(document.getElementById('currentWeight').value);
@@ -236,7 +309,6 @@
             kbjuMessage.textContent = '';
             kbjuMessage.classList.remove('text-green-600', 'text-red-600');
 
-            // Проверка ввода
             if (!currentWeight || isNaN(currentWeight) || currentWeight <= 0 ||
                 !goalWeight || isNaN(goalWeight) || goalWeight <= 0 ||
                 !height || isNaN(height) || height <= 0 ||
@@ -249,7 +321,6 @@
             }
 
             try {
-                // Расчет BMR (формула Миффлина-Сан Жеора)
                 let bmr;
                 if (gender === 'male') {
                     bmr = 10 * currentWeight + 6.25 * height - 5 * age + 5;
@@ -257,33 +328,24 @@
                     bmr = 10 * currentWeight + 6.25 * height - 5 * age - 161;
                 }
 
-                // Поддерживающие калории
                 let maintenanceCalories = bmr * activityLevel;
-
-                // Адаптация калорий под цель
                 let targetCalories;
                 if (goalWeight < currentWeight) {
-                    // Дефицит 15% для похудения
                     targetCalories = maintenanceCalories * 0.85;
                 } else if (goalWeight > currentWeight) {
-                    // Профицит 15% для набора
                     targetCalories = maintenanceCalories * 1.15;
                 } else {
-                    // Поддержание веса
                     targetCalories = maintenanceCalories;
                 }
 
-                // Расчет макронутриентов (на основе желаемого веса)
-                const protein = Math.round(goalWeight * 2.0); // 2.0 г/кг
-                const fat = Math.round(goalWeight * 0.9); // 0.9 г/кг
-                const carbs = Math.round((targetCalories - (protein * 4 + fat * 9)) / 4); // Остаток на углеводы
+                const protein = Math.round(goalWeight * 2.0);
+                const fat = Math.round(goalWeight * 0.9);
+                const carbs = Math.round((targetCalories - (protein * 4 + fat * 9)) / 4);
 
-                // Отображение результата
                 kbjuMessage.textContent = `Калории: ${Math.round(targetCalories)} ккал. Белки: ${protein} г. Жиры: ${fat} г. Углеводы: ${carbs} г.`;
                 kbjuMessage.classList.add('text-green-600');
                 console.log('Результат КБЖУ:', { targetCalories, protein, fat, carbs }); // Отладка
 
-                // Заполнение калькулятора порций
                 document.getElementById('targetCalories').value = Math.round(targetCalories);
             } catch (error) {
                 kbjuMessage.textContent = 'Ошибка при расчете КБЖУ. Попробуйте снова.';
@@ -371,7 +433,7 @@
             try {
                 const dish = JSON.parse(dishSelect);
                 console.log('Блюдо распарсено:', dish); // Отладка
-                const portions = Math.round(targetCalories / dish.calories * 10) / 10; // Округляем до 1 знака
+                const portions = Math.round(targetCalories / dish.calories * 10) / 10;
                 const adjustedProtein = Math.round(dish.protein * portions);
                 const adjustedFat = Math.round(dish.fat * portions);
                 const adjustedCarbs = Math.round(dish.carbs * portions);
